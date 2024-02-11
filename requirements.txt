@@ -1,0 +1,8 @@
+numpy
+pandas
+fiona
+rasterio
+matplotlib
+statsmodels
+scikit-learn
+tqdm

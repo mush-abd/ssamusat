@@ -32,7 +32,6 @@ ssamusat\
 └── scripts
 
 
-## Folder Hierarchy Explanation:
 ## Project Directory Structure
 
 - **data:** Contains various data files used in the project, including city coordinates, satellite images, and shapefiles.

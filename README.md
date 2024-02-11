@@ -11,20 +11,26 @@ This project focuses on leveraging satellite imagery, particularly night-time li
 - Visualize and interpret the results to gain insights into the socio-economic conditions and predict the economic status of different regions.
 
 ## Folder Hierarchy:
-ssamusat/\
-│\
-├── scripts/\
-│   ├── ass_3_gps_mapping.py\
-│   ├── contour.py\
-│   ├── image_processing/\
-│   │   ├── binary_images_thresh.py\
-│   │   └── image_selection.py\
-│   ├── gps_mapping/\
-│   │   └── gps_super_impos.py\
-│   ├── main.py\
-│   └── test/\
-│       └── test_sample.py\
-└── output/
+ssamusat \
+├── data \
+│   ├── city_coordinates \
+│   ├── satellite_images \
+│   │   └── snap.jpg \
+│   └── shapefiles \
+├── gps_utils \
+│   ├── gpstran.py \
+│   └── __init__.py \
+├── image_processing \
+│   ├── improc.py \
+│   └── __init__.py \
+├── main.py \
+├── main__.py \
+├── output \
+│   ├── binary_images_thresholding \
+│   │   └── contour-out-th100.jpg \
+│   └── contour_results \
+└── scripts \
+
 
 ## Folder Hierarchy Explanation:
 

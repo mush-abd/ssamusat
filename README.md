@@ -51,7 +51,7 @@ ssamusat\
   - **contour_results:** Directory for contour results generated during processing.
 - **scripts:** Location for various script files used in the project.
 - **main.py:** Main Python script for executing the project.
-- **main__.py:** Another Python script, possibly an alternate or backup version of the main script.
+- 
 
 
 ## Usage:

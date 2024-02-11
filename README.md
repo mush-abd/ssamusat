@@ -33,10 +33,26 @@ ssamusat\
 
 
 ## Folder Hierarchy Explanation:
+## Project Directory Structure
 
-- **data/**: This directory contains raw satellite imagery data obtained from satellite sources or external databases.
-- **output/**: Here, processed data, analysis results, and model predictions are stored. This includes any intermediate data generated during the processing pipeline as well as final analysis outputs.
-- **scripts/**: This directory contains Python scripts that implement various stages of the project pipeline, including data preprocessing, feature extraction, data analysis, machine learning modeling, evaluation, and visualization.
+- **data:** Contains various data files used in the project, including city coordinates, satellite images, and shapefiles.
+  - **city_coordinates:** Stores data related to city coordinates.
+  - **satellite_images:** Contains satellite images, with "snap.jpg" being one of them.
+  - **shapefiles:** Holds shapefiles used for geographical data representation.
+- **gps_utils:** Contains utility modules related to GPS functionalities.
+  - **gpstran.py:** Module for GPS transformations.
+  - **__init__.py:** Initialization file for the gps_utils package.
+- **image_processing:** Contains modules related to image processing.
+  - **improc.py:** Module for image processing functionalities.
+  - **__init__.py:** Initialization file for the image_processing package.
+- **output:** Stores output files generated during the project execution.
+  - **binary_images_thresholding:** Directory for binary images generated across dif-2 thresholding.
+    - **contour-out-th100.jpg:** Example of a binary image output.
+  - **contour_results:** Directory for contour results generated during processing.
+- **scripts:** Location for various script files used in the project.
+- **main.py:** Main Python script for executing the project.
+- **main__.py:** Another Python script, possibly an alternate or backup version of the main script.
+
 
 ## Usage:
 

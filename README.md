@@ -45,6 +45,8 @@ ssamusat/\
 - Libraries: numpy, pandas, fiona, rasterio, matplotlib, statsmodels, scikit-learn, tqdm, etc. (See requirements.txt for a full list of dependencies)
 - Installing command :pip install -r requirements.txt
 
+
+
   ## Project Supervisor:
 - Adeeba Ali @ZHCET Aligarh Muslim University
 

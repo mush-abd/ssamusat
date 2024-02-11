@@ -29,7 +29,7 @@ ssamusat\
 │   ├── binary_images_thresholding\
 │   │   └── contour-out-th100.jpg\
 │   └── contour_results\
-└── scripts\
+└── scripts
 
 
 ## Folder Hierarchy Explanation:

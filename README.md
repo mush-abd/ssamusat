@@ -11,7 +11,7 @@ This project focuses on leveraging satellite imagery, particularly night-time li
 - Visualize and interpret the results to gain insights into the socio-economic conditions and predict the economic status of different regions.
 
 ## Folder Hierarchy:
-satellite_project/
+ssamusat/
 │
 ├── data/
 │   └── (raw satellite imagery data)
@@ -25,7 +25,7 @@ satellite_project/
 │   ├── evaluation.py
 │   └── visualization.py
 └── README.md
-# Satellite Socio-Economic Analysis and GDP Prediction Project
+
 
 ## Folder Hierarchy Explanation:
 

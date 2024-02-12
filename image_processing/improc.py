@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
 
-def find_bright_regions(image):
-    # Convert image to grayscale
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+def find_bright_regions(image_path):
+    # Read the image
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
     # Apply threshold to identify bright regions
-    _, thresh = cv2.threshold(gray_image, 200, 255, cv2.THRESH_BINARY)
+    _, thresh = cv2.threshold(image, 200, 255, cv2.THRESH_BINARY)
 
     # Find contours in the thresholded image
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -24,13 +24,28 @@ def find_bright_regions(image):
             cY = int(M["m01"] / M["m00"])
             sorted_centers_and_contours.append(((cX, cY), contour))
 
-    return sorted_centers_and_contours
 
-def calculate_image_center(image):
-    height, width, _ = image.shape
-    image_center_x = width // 2
-    image_center_y = height // 2
-    return image_center_x, image_center_y
+    return (sorted_centers_and_contours,image);
 
-def mark_image_center(image, center_x, center_y):
+def get_image_center(image):
+    height, width = image.shape
+    center_x = width // 2
+    center_y = height // 2
+    return center_x, center_y
+
+
+def calculate_center_gps(top_right_lat, top_right_lon, bottom_left_lat, bottom_left_lon):
+    center_lat = (top_right_lat + bottom_left_lat) / 2
+    center_lon = (top_right_lon + bottom_left_lon) / 2
+    return center_lat, center_lon
+
+
+def mark_image_center(image, gps_lat, gps_lon):
+    height, width= image.shape
+    center_x = width // 2
+    center_y = height // 2
     cv2.drawMarker(image, (center_x, center_y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=16, thickness=2)
+    text = f'GPS : ({gps_lat},{gps_lon})'
+    text2=f'Pixel Coordinates: ({center_x}, {center_y})'
+    cv2.putText(image, text, (center_x-300, center_y-100), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 5, cv2.LINE_AA)
+    cv2.putText(image, text2, (center_x-300, center_y-40), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 5, cv2.LINE_AA)

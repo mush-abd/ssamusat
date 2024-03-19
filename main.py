@@ -69,4 +69,4 @@ if __name__ == "__main__":
 
         cv2.imwrite(os.path.join(output_dir, f'{i}Bright_Regions.jpg'), img_cpy)
         print(lat, lon)
-        print(f'Center {i}: {center}, Contour Area: {cv2.contourArea(contour)} Image size: {image.shape}')
+        print(f'Center {i}: {center}, Contour Area: {cv2.contourArea(contour)} Image size:  {image.shape}')

@@ -27,8 +27,9 @@ if __name__ == "__main__":
     cntr_x, cntr_y = ip.get_image_center(image)
     cntr_lat, cntr_lon = ip.calculate_center_gps(top_right_lat, top_right_lon, bottom_left_lat, bottom_left_lon)
 
+    print(cntr_lat, cntr_lon)
     # changing to xyz
-    xc, yc, zc = gpst.geodetic_to_ecef(cntr_lat, cntr_lon, altitude=0)
+    xc, yc, zc = gpst.geodetic_to_ecef(cntr_lat, cntr_lon, altitude=2000000)
     print(xc, yc, zc)
 
     # Print the sorted centers and corresponding contours
@@ -42,6 +43,7 @@ if __name__ == "__main__":
         cv2.putText(img_cpy, text, (cX - 320, cY - 13), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
         ip.mark_image_center(img_cpy, cntr_lat, cntr_lon)
 
+        print(f'hello {center}')
         lat, lon, alt = gpst.co_ordinate_of_point_gps((xc, yc, zc), (cntr_x, cntr_y), center, spatial_factor)
 
         cv2.imwrite(os.path.join(output_dir, f'{i}Bright_Regions.jpg'), img_cpy)

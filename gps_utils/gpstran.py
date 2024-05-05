@@ -74,6 +74,6 @@ def co_ordinate_of_point_gps(center_gps_coordinate_xyz, center_coordinate_px, po
 
     final_cordinate_x=(x-dis_x);
     final_cordinate_y=(y-dis_y);
-    print(final_cordinate_x, final_cordinate_y)
+    # print(final_cordinate_x, final_cordinate_y)
     lat,lon,alt=ecef_to_geodetic(final_cordinate_x, final_cordinate_y,z);
     return lat, lon, alt;

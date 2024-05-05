@@ -31,9 +31,12 @@ if __name__ == "__main__":
     # changing to xyz
     xc, yc, zc = gpst.geodetic_to_ecef(cntr_lat, cntr_lon, altitude=2000000)
     print(xc, yc, zc)
-
+    # x = 0
     # Print the sorted centers and corresponding contours
     for i, (center, contour) in enumerate(sorted_centers_and_contours):
+        # x += 1
+        if cv2.contourArea(contour) < 4000:
+            break
         img_cpy = image.copy()
         cv2.drawContours(img_cpy, [contour], -1, (0, 255, 0), 4)
         cv2.circle(img_cpy, center, 7, (0, 255, 0), 2)
@@ -43,9 +46,13 @@ if __name__ == "__main__":
         cv2.putText(img_cpy, text, (cX - 320, cY - 13), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
         ip.mark_image_center(img_cpy, cntr_lat, cntr_lon)
 
-        print(f'hello {center}')
+        # print(f'hello {center}')
         lat, lon, alt = gpst.co_ordinate_of_point_gps((xc, yc, zc), (cntr_x, cntr_y), center, spatial_factor)
 
         cv2.imwrite(os.path.join(output_dir, f'{i}Bright_Regions.jpg'), img_cpy)
         print(lat, lon)
         print(f'Center {i}: {center}, Contour Area: {cv2.contourArea(contour)} Image size: {image.shape}')
+
+        # if x == 5:
+        #     break
+

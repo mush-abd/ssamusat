@@ -35,7 +35,7 @@ def get_image_center(image):
 
 
 def calculate_center_gps(top_right_lat, top_right_lon, bottom_left_lat, bottom_left_lon):
-    center_lat = (top_right_lat + bottom_left_lat) / 2
+    center_lat = (top_right_lat + bottom_left_lat) / 2 #approximate
     center_lon = (top_right_lon + bottom_left_lon) / 2
     return center_lat, center_lon
 

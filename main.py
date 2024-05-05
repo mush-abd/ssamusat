@@ -1,5 +1,7 @@
 import cv2
+import numpy as np
 import os
+import matplotlib.pyplot as plt
 import image_processing.improc as ip
 import gps_utils.gpstran as gpst
 
@@ -27,9 +29,8 @@ if __name__ == "__main__":
     cntr_x, cntr_y = ip.get_image_center(image)
     cntr_lat, cntr_lon = ip.calculate_center_gps(top_right_lat, top_right_lon, bottom_left_lat, bottom_left_lon)
 
-    print(cntr_lat, cntr_lon)
     # changing to xyz
-    xc, yc, zc = gpst.geodetic_to_ecef(cntr_lat, cntr_lon, altitude=2000000)
+    xc, yc, zc = gpst.geodetic_to_ecef(cntr_lat, cntr_lon, altitude=0)
     print(xc, yc, zc)
     # x = 0
     # Print the sorted centers and corresponding contours
@@ -46,7 +47,27 @@ if __name__ == "__main__":
         cv2.putText(img_cpy, text, (cX - 320, cY - 13), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
         ip.mark_image_center(img_cpy, cntr_lat, cntr_lon)
 
-        # print(f'hello {center}')
+        # Mask the image to only include pixels within the contour
+        mask = np.zeros_like(image)
+        cv2.drawContours(mask, [contour], -1, (255, 255, 255), -1)
+        masked_image = cv2.bitwise_and(image, mask)
+
+        # Extract gray levels from the masked image
+        gray_pixels = masked_image[mask != 0]
+
+        # Plot histogram
+        hist, bins = np.histogram(gray_pixels, bins=256, range=[0, 256])
+        plt.plot(hist, color='black')
+        plt.xlabel('Pixel Intensity')
+        plt.ylabel('Frequency')
+        plt.title('Histogram of Gray Level Pixels within Contour')
+
+        # Find the total number of pixels within the contour
+        total_pixels_within_contour = cv2.countNonZero(mask)
+        plt.annotate(f'Total Pixels: {total_pixels_within_contour}', xy=(0.05, 0.95), xycoords='axes fraction', fontsize=12, color='red')
+
+        plt.show()
+
         lat, lon, alt = gpst.co_ordinate_of_point_gps((xc, yc, zc), (cntr_x, cntr_y), center, spatial_factor)
 
         cv2.imwrite(os.path.join(output_dir, f'{i}Bright_Regions.jpg'), img_cpy)

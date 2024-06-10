@@ -50,4 +50,4 @@ def mark_image_center(image, gps_lat, gps_lon):
     cv2.putText(image, text, (center_x-300, center_y-100), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 5, cv2.LINE_AA)
     cv2.putText(image, text2, (center_x-300, center_y-40), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 0), 5, cv2.LINE_AA)
 
-def get_image_center_gps()
+

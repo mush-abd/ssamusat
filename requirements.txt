@@ -6,3 +6,6 @@ matplotlib
 statsmodels
 scikit-learn
 tqdm
+geopandas
+PIL
+
